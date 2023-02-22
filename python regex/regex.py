@@ -1,40 +1,34 @@
-"""Schröder PawełZTPwJP informatyka N II rok L_II_NW_INFI_K7b 
-L6 
-""" 
+# """Schröder PawełZTPwJP informatyka N II rok L_II_NW_INFI_K7b 
+# L6 
+# """ 
+
 # z1
 
+import re
+
 def czyliczba():
+
     usr_input = input("podaj napis: ")
 
-    napis = []
+    if_all_are_digits = re.findall("\D", usr_input)
 
-    for i in usr_input:
-        if i.isdigit():
-            napis.append(i)
-
-    if len(napis) == len(usr_input):
-        print("to jest liczba")
+    if if_all_are_digits:
+        print("\nTo nie jest liczba")
     else:
-        print("to nie jest liczba")
+        print("\nTo jest liczba")
 
 
 # z2
 
 def czyliczba1():
-    napis1 = []
-
     usr_input1 = input("podaj napis: ")
 
-    for i in usr_input1:
-        if i.isdigit():
-            napis1.append(i)
+    if_any_digits = re.findall("\d", usr_input1)
 
-    wypisz = ", ".join(napis1)
-
-    print("znalezione liczby: ", wypisz)
+    print("znalezione liczby: ", if_any_digits)
 
 
-# z4
+# z3
 def kody_pocztowe():
     user_input = input("Podaj kod: ")
 
@@ -50,7 +44,7 @@ def kody_pocztowe():
         print("#Kod jest niepoprawny#")
 
 
-# z5
+# z4
 
 def email():
     adres = input("Podaj adres: ")
@@ -113,3 +107,27 @@ def email():
         print("Adres jest niepoprawny.")
 
 
+def menu():
+    choose_submenu = int(input("\nWybierz z ponizszych:\n1. Czy tekst składa się z samych liczb?\n2. Znajdź wszystkie liczby w tekście\n3. Czy poprawny format kodu pocztowego?\n4. Czy poprawny format adresu e-mail?\n5. Wyjdź\n\n"))
+
+    if choose_submenu == 1:
+        return czyliczba()
+    elif choose_submenu == 2:
+        return czyliczba1()
+    elif choose_submenu == 3:
+        return kody_pocztowe()
+    elif choose_submenu == 4:
+        return email()
+    elif choose_submenu == 5:
+        return False
+
+
+
+if __name__ == "__main__":
+    boo = True
+
+    while boo:
+        menu()
+        if not menu():
+            print("\nShutting down...\n")
+            boo = False
