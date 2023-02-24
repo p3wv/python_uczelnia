@@ -30,20 +30,15 @@ def czyliczba1():
 
 # z3
 def kody_pocztowe():
-    user_input = input("Podaj kod: ")
+    user_input = input("\nPodaj kod: ")
 
-    listed_input = []
+    check_if_proper_postal = re.findall("[0-9][0-9]-[0-9][0-9][0-9]", user_input)
 
-    for i in user_input:
-        listed_input.append(i)
-
-    if listed_input[0].isdigit() and listed_input[1].isdigit() and listed_input[2] == '-' and listed_input[
-        3].isdigit() and listed_input[4].isdigit() and listed_input[5].isdigit():
-        print("Kod jest poprawny!")
+    if check_if_proper_postal:
+        print("\nKod jest poprawny!")
     else:
-        print("#Kod jest niepoprawny#")
-
-
+        print("\n#Kod jest niepoprawny#")
+        
 # z4
 
 def email():
@@ -108,26 +103,26 @@ def email():
 
 
 def menu():
-    choose_submenu = int(input("\nWybierz z ponizszych:\n1. Czy tekst składa się z samych liczb?\n2. Znajdź wszystkie liczby w tekście\n3. Czy poprawny format kodu pocztowego?\n4. Czy poprawny format adresu e-mail?\n5. Wyjdź\n\n"))
 
-    if choose_submenu == 1:
-        return czyliczba()
-    elif choose_submenu == 2:
-        return czyliczba1()
-    elif choose_submenu == 3:
-        return kody_pocztowe()
-    elif choose_submenu == 4:
-        return email()
-    elif choose_submenu == 5:
-        return False
+    while True:
+
+        choose_submenu = int(input("\nWybierz z ponizszych:\n1. Czy tekst składa się z samych liczb?\n2. Znajdź wszystkie liczby w tekście\n3. Czy poprawny format kodu pocztowego?\n4. Czy poprawny format adresu e-mail?\n5. Wyjdź\n\n"))
+
+        if choose_submenu == 1:
+            czyliczba()
+        elif choose_submenu == 2:
+            czyliczba1()
+        elif choose_submenu == 3:
+            kody_pocztowe()
+        elif choose_submenu == 4:
+            email()
+        elif choose_submenu == 5:
+            print("\nShutting down...\n")
+            break
+        else:
+            print("Wrong input!")
 
 
 
 if __name__ == "__main__":
-    boo = True
-
-    while boo:
-        menu()
-        if not menu():
-            print("\nShutting down...\n")
-            boo = False
+    menu()
